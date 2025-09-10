@@ -28,6 +28,12 @@
     </properties>
 
     <dependencies>
+        <!-- Starter base (necesario para @Configuration, @Bean, etc.) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
         <!-- WebFlux -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -64,18 +70,15 @@
 
     <build>
         <plugins>
-            <!-- OpenAPI Generator: genera API/interfaces/modelos desde el contrato -->
+            <!-- OpenAPI Generator -->
             <plugin>
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
                 <version>${openapi.generator.version}</version>
                 <executions>
                     <execution>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
+                        <goals><goal>generate</goal></goals>
                         <configuration>
-                            <!-- Ruta del contrato -->
                             <inputSpec>${project.basedir}/src/main/resources/openapi/loan-validation.yaml</inputSpec>
                             <generatorName>spring</generatorName>
                             <apiPackage>com.techgirls.loanvalidation.api</apiPackage>
@@ -93,7 +96,7 @@
                 </executions>
             </plugin>
 
-            <!-- (Opcional pero útil) Añadir la carpeta de código generado al classpath -->
+            <!-- Build helper para incluir código generado -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
@@ -118,9 +121,7 @@
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>${jacoco.version}</version>
                 <executions>
-                    <execution>
-                        <goals><goal>prepare-agent</goal></goals>
-                    </execution>
+                    <execution><goals><goal>prepare-agent</goal></goals></execution>
                     <execution>
                         <id>report</id>
                         <phase>test</phase>
@@ -129,7 +130,7 @@
                 </executions>
             </plugin>
 
-            <!-- Checkstyle: estilo (usa el archivo que ya tienes en /config/checkstyle.xml) -->
+            <!-- Checkstyle -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
@@ -137,7 +138,6 @@
                 <configuration>
                     <configLocation>config/checkstyle.xml</configLocation>
                     <consoleOutput>true</consoleOutput>
-                    <!-- pon true si quieres que rompa el build por estilo -->
                     <failOnViolation>false</failOnViolation>
                 </configuration>
                 <executions>
@@ -148,7 +148,7 @@
                 </executions>
             </plugin>
 
-            <!-- Spring Boot plugin (empaquetado/ejecución) -->
+            <!-- Spring Boot plugin -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

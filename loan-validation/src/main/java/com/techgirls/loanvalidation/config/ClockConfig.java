@@ -1,12 +1,13 @@
-package com.nttdata.loanvalidation.config;
+package com.techgirls.loanvalidation.config;
 
-import java.time.Clock;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-/** Provides an injectable Clock to ease time-dependent tests. */
+import java.time.Clock;
+
 @Configuration
 public class ClockConfig {
+
     @Bean
     public Clock systemClock() {
         return Clock.systemDefaultZone();
