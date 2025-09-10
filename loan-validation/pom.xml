@@ -4,15 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-<<<<<<< HEAD
 
-=======
-    <artifactId>loan-validation</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
-    <name>loan-validation</name>
-    <description>Servicio de validación de préstamos</description>
->>>>>>> 58078642f54465885ddb8cded03e947f481ac89f
+    <!-- Spring Boot parent -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -29,8 +22,9 @@
     <properties>
         <java.version>17</java.version>
         <openapi.generator.version>7.7.0</openapi.generator.version>
-        <maven.checkstyle.version>3.3.1</maven.checkstyle.version>
         <jacoco.version>0.8.12</jacoco.version>
+        <maven.checkstyle.version>3.3.1</maven.checkstyle.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
@@ -53,17 +47,24 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- Test (JUnit + Mockito ya vienen en este starter) -->
+        <!-- Testing (JUnit, Mockito, AssertJ) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Reactor Test (para StepVerifier en WebFlux) -->
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-test</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <!-- OpenAPI Generator: genera interfaces y modelos desde el contrato -->
+            <!-- OpenAPI Generator: genera API/interfaces/modelos desde el contrato -->
             <plugin>
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
@@ -74,6 +75,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
+                            <!-- Ruta del contrato -->
                             <inputSpec>${project.basedir}/src/main/resources/openapi/loan-validation.yaml</inputSpec>
                             <generatorName>spring</generatorName>
                             <apiPackage>com.techgirls.loanvalidation.api</apiPackage>
@@ -91,6 +93,25 @@
                 </executions>
             </plugin>
 
+            <!-- (Opcional pero útil) Añadir la carpeta de código generado al classpath -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.6.0</version>
+                <executions>
+                    <execution>
+                        <id>add-generated-sources</id>
+                        <phase>generate-sources</phase>
+                        <goals><goal>add-source</goal></goals>
+                        <configuration>
+                            <sources>
+                                <source>${project.build.directory}/generated-sources</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
             <!-- JaCoCo: cobertura -->
             <plugin>
                 <groupId>org.jacoco</groupId>
@@ -98,44 +119,41 @@
                 <version>${jacoco.version}</version>
                 <executions>
                     <execution>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
+                        <goals><goal>prepare-agent</goal></goals>
                     </execution>
                     <execution>
                         <id>report</id>
                         <phase>test</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
+                        <goals><goal>report</goal></goals>
                     </execution>
                 </executions>
             </plugin>
 
-            <!-- Checkstyle: estilo -->
+            <!-- Checkstyle: estilo (usa el archivo que ya tienes en /config/checkstyle.xml) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>${maven.checkstyle.version}</version>
                 <configuration>
-                    <configLocation>config/checkstyle/google_checks.xml</configLocation>
+                    <configLocation>config/checkstyle.xml</configLocation>
                     <consoleOutput>true</consoleOutput>
-                    <!-- ponlo true si quieres que rompa el build por estilo -->
+                    <!-- pon true si quieres que rompa el build por estilo -->
                     <failOnViolation>false</failOnViolation>
                 </configuration>
                 <executions>
                     <execution>
                         <phase>verify</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
+                        <goals><goal>check</goal></goals>
                     </execution>
                 </executions>
             </plugin>
+
+            <!-- Spring Boot plugin (empaquetado/ejecución) -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
         </plugins>
     </build>
-<<<<<<< HEAD
 
-=======
->>>>>>> 58078642f54465885ddb8cded03e947f481ac89f
 </project>
