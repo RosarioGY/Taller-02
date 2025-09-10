@@ -27,18 +27,9 @@ components:
       type: object
       required: [monthlySalary, requestedAmount, termMonths]
       properties:
-        monthlySalary:
-          type: number
-          format: double
-          minimum: 0.01
-        requestedAmount:
-          type: number
-          format: double
-          minimum: 0.01
-        termMonths:
-          type: integer
-          minimum: 1
-          maximum: 36
+        monthlySalary: { type: number, format: double, minimum: 0.01 }
+        requestedAmount: { type: number, format: double, minimum: 0.01 }
+        termMonths: { type: integer, minimum: 1, maximum: 36 }
         lastLoanDate:
           type: string
           format: date
@@ -48,13 +39,10 @@ components:
       type: object
       required: [eligible, reasons, monthlyPayment]
       properties:
-        eligible:
-          type: boolean
+        eligible: { type: boolean }
         reasons:
           type: array
           items:
             type: string
             enum: [HAS_RECENT_LOANS, PLAZO_MAXIMO_SUPERADO, CAPACIDAD_INSUFICIENTE, DATOS_INVALIDOS]
-        monthlyPayment:
-          type: number
-          format: double
+        monthlyPayment: { type: number, format: double }
