@@ -1,0 +1,7 @@
+# Configuración básica de Spring Boot
+server:
+  port: 8080
+spring:
+  application:
+    name: loan-validation
+

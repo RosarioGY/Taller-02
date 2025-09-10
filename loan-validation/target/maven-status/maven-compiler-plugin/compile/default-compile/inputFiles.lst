@@ -1,0 +1,12 @@
+C:\Users\PC\Documents\GitHub\Taller-02\loan-validation\src\main\java\com\techgirls\loanvalidation\adapter\StubLoanHistoryClient.java
+C:\Users\PC\Documents\GitHub\Taller-02\loan-validation\src\main\java\com\techgirls\loanvalidation\config\ClockConfig.java
+C:\Users\PC\Documents\GitHub\Taller-02\loan-validation\src\main\java\com\techgirls\loanvalidation\controller\LoanEligibilityController.java
+C:\Users\PC\Documents\GitHub\Taller-02\loan-validation\src\main\java\com\techgirls\loanvalidation\LoanValidationApplication.java
+C:\Users\PC\Documents\GitHub\Taller-02\loan-validation\src\main\java\com\techgirls\loanvalidation\model\LoanValidationRequest.java
+C:\Users\PC\Documents\GitHub\Taller-02\loan-validation\src\main\java\com\techgirls\loanvalidation\model\LoanValidationResponse.java
+C:\Users\PC\Documents\GitHub\Taller-02\loan-validation\src\main\java\com\techgirls\loanvalidation\model\Reason.java
+C:\Users\PC\Documents\GitHub\Taller-02\loan-validation\src\main\java\com\techgirls\loanvalidation\model\ReasonType.java
+C:\Users\PC\Documents\GitHub\Taller-02\loan-validation\src\main\java\com\techgirls\loanvalidation\port\LoanHistoryClient.java
+C:\Users\PC\Documents\GitHub\Taller-02\loan-validation\target\generated-sources\openapi\src\main\java\com\techgirls\loanvalidation\api\LoanValidationsApi.java
+C:\Users\PC\Documents\GitHub\Taller-02\loan-validation\target\generated-sources\openapi\src\main\java\com\techgirls\loanvalidation\model\LoanValidationRequest.java
+C:\Users\PC\Documents\GitHub\Taller-02\loan-validation\target\generated-sources\openapi\src\main\java\com\techgirls\loanvalidation\model\LoanValidationResult.java
