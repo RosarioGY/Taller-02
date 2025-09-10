@@ -1,0 +1,50 @@
+openapi: 3.0.1
+info:
+  title: Loan Eligibility API
+  version: 1.0.0
+  description: API para validar elegibilidad de préstamos
+paths:
+  /api/loan-eligibility:
+    post:
+      summary: Valida la elegibilidad de un préstamo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoanValidationRequest'
+      responses:
+        '200':
+          description: Respuesta de validación
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoanValidationResponse'
+components:
+  schemas:
+    LoanValidationRequest:
+      type: object
+      properties:
+        customerId:
+          type: string
+        amount:
+          type: number
+        termMonths:
+          type: integer
+    LoanValidationResponse:
+      type: object
+      properties:
+        eligible:
+          type: boolean
+        reasons:
+          type: array
+          items:
+            $ref: '#/components/schemas/Reason'
+    Reason:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+

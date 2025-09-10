@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/loan-validation/src/main/resources/static/openapi/loan-eligibility.yaml">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/loan-validation/src/main/resources/static/openapi/loan-eligibility.yaml" />
+              <option name="updatedContent" value="openapi: 3.0.1&#10;info:&#10;  title: Loan Eligibility API&#10;  version: 1.0.0&#10;  description: API para validar elegibilidad de préstamos&#10;paths:&#10;  /api/loan-eligibility:&#10;    post:&#10;      summary: Valida la elegibilidad de un préstamo&#10;      requestBody:&#10;        required: true&#10;        content:&#10;          application/json:&#10;            schema:&#10;              $ref: '#/components/schemas/LoanValidationRequest'&#10;      responses:&#10;        '200':&#10;          description: Respuesta de validación&#10;          content:&#10;            application/json:&#10;              schema:&#10;                $ref: '#/components/schemas/LoanValidationResponse'&#10;components:&#10;  schemas:&#10;    LoanValidationRequest:&#10;      type: object&#10;      properties:&#10;        customerId:&#10;          type: string&#10;        amount:&#10;          type: number&#10;        termMonths:&#10;          type: integer&#10;    LoanValidationResponse:&#10;      type: object&#10;      properties:&#10;        eligible:&#10;          type: boolean&#10;        reasons:&#10;          type: array&#10;          items:&#10;            $ref: '#/components/schemas/Reason'&#10;    Reason:&#10;      type: object&#10;      properties:&#10;        code:&#10;          type: string&#10;        message:&#10;          type: string&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
