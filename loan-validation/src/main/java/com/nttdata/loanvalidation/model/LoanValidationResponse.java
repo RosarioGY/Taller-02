@@ -2,31 +2,23 @@ package com.nttdata.loanvalidation.model;
 
 import java.util.List;
 
-public class LoanValidationResponse {
+public class LoanValidationResult {
     private boolean eligible;
-    private List<Reason> reasons;
+    private List<ReasonType> reasons;
+    private double monthlyPayment;
 
-    public LoanValidationResponse() {}
+    public LoanValidationResult() {}
 
-    public LoanValidationResponse(boolean eligible, List<Reason> reasons) {
+    public LoanValidationResult(boolean eligible, List<ReasonType> reasons, double monthlyPayment) {
         this.eligible = eligible;
         this.reasons = reasons;
+        this.monthlyPayment = monthlyPayment;
     }
 
-    public boolean isEligible() {
-        return eligible;
-    }
-
-    public void setEligible(boolean eligible) {
-        this.eligible = eligible;
-    }
-
-    public List<Reason> getReasons() {
-        return reasons;
-    }
-
-    public void setReasons(List<Reason> reasons) {
-        this.reasons = reasons;
-    }
+    public boolean isEligible() { return eligible; }
+    public void setEligible(boolean eligible) { this.eligible = eligible; }
+    public List<ReasonType> getReasons() { return reasons; }
+    public void setReasons(List<ReasonType> reasons) { this.reasons = reasons; }
+    public double getMonthlyPayment() { return monthlyPayment; }
+    public void setMonthlyPayment(double monthlyPayment) { this.monthlyPayment = monthlyPayment; }
 }
-

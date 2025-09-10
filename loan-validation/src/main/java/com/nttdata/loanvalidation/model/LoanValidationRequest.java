@@ -1,40 +1,28 @@
-
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
-    }
-
-    public double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
-
-    public int getTermMonths() {
-        return termMonths;
-    }
-
-    public void setTermMonths(int termMonths) {
-        this.termMonths = termMonths;
-    }
-}
 package com.nttdata.loanvalidation.model;
 
+import java.time.LocalDate;
+
 public class LoanValidationRequest {
-    private String customerId;
-    private double amount;
+    private double monthlySalary;
+    private double requestedAmount;
     private int termMonths;
+    private LocalDate lastLoanDate;
 
     public LoanValidationRequest() {}
 
-    public LoanValidationRequest(String customerId, double amount, int termMonths) {
-        this.customerId = customerId;
-        this.amount = amount;
+    public LoanValidationRequest(double monthlySalary, double requestedAmount, int termMonths, LocalDate lastLoanDate) {
+        this.monthlySalary = monthlySalary;
+        this.requestedAmount = requestedAmount;
         this.termMonths = termMonths;
+        this.lastLoanDate = lastLoanDate;
     }
 
-    public String getCustomerId() {
-        return customerId;
-    }
-
+    public double getMonthlySalary() { return monthlySalary; }
+    public void setMonthlySalary(double monthlySalary) { this.monthlySalary = monthlySalary; }
+    public double getRequestedAmount() { return requestedAmount; }
+    public void setRequestedAmount(double requestedAmount) { this.requestedAmount = requestedAmount; }
+    public int getTermMonths() { return termMonths; }
+    public void setTermMonths(int termMonths) { this.termMonths = termMonths; }
+    public LocalDate getLastLoanDate() { return lastLoanDate; }
+    public void setLastLoanDate(LocalDate lastLoanDate) { this.lastLoanDate = lastLoanDate; }
+}
