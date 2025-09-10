@@ -36,7 +36,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-09-10T18:11:06.484388400-05:00[America/Lima]", comments = "Generator version: 7.7.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-09-10T18:11:32.748721400-05:00[America/Lima]", comments = "Generator version: 7.7.0")
 @Validated
 @Tag(name = "loan-validations", description = "the loan-validations API")
 public interface LoanValidationsApi {
