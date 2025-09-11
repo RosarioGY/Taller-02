@@ -1,14 +1,16 @@
 package com.techgirls.loanvalidation.model;
 
-import lombok.Builder;
-import lombok.Data;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.*;
 import jakarta.validation.constraints.NotNull;
-import java.math.BigDecimal;
 
-/** Request model aligned with OpenAPI contract. */
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class LoanValidationRequest {
 
     @NotNull
@@ -20,6 +22,7 @@ public class LoanValidationRequest {
     @NotNull
     private Integer termMonths;
 
-    /** Optional; format: YYYY-MM-DD */
-    private String lastLoanDate;
+    /** Opcional; si lo envías, usa formato ISO yyyy-MM-dd */
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate lastLoanDate;
 }
