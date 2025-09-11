@@ -1,0 +1,90 @@
+openapi: 3.0.3
+info:
+  description: |
+    Single microservice. Validates loan eligibility using rules R1–R4.
+  title: Loan Eligibility API
+  version: 1.1.0
+servers:
+- url: http://localhost:8080
+paths:
+  /api/loan-eligibility:
+    post:
+      operationId: validateLoanEligibility
+      requestBody:
+        content:
+          application/json:
+            examples:
+              ok:
+                value:
+                  monthlySalary: 2500
+                  requestedAmount: 6000
+                  termMonths: 24
+                  employmentMonths: 12
+            schema:
+              $ref: '#/components/schemas/LoanValidationRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoanValidationResponse'
+          description: Eligibility evaluation
+      summary: Validate loan eligibility
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+components:
+  schemas:
+    LoanValidationRequest:
+      example:
+        monthlySalary: 1.0800828190461012
+        termMonths: 6
+        requestedAmount: 1.6027456183070403
+        employmentMonths: 0
+      properties:
+        monthlySalary:
+          format: double
+          minimum: 1
+          type: number
+        requestedAmount:
+          format: double
+          minimum: 1
+          type: number
+        termMonths:
+          maximum: 36
+          minimum: 1
+          type: integer
+        employmentMonths:
+          description: "R1: debe ser >= 3"
+          minimum: 0
+          type: integer
+      required:
+      - employmentMonths
+      - monthlySalary
+      - requestedAmount
+      - termMonths
+      type: object
+    LoanValidationResponse:
+      example:
+        reasons:
+        - reasons
+        - reasons
+        monthlyPayment: 0.8008281904610115
+        eligible: true
+      properties:
+        eligible:
+          type: boolean
+        monthlyPayment:
+          format: double
+          type: number
+        reasons:
+          items:
+            type: string
+          type: array
+      required:
+      - eligible
+      - monthlyPayment
+      - reasons
+      type: object
+
