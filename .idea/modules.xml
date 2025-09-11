@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/loan-validation-ms.iml" filepath="$PROJECT_DIR$/.idea/loan-validation-ms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loan-validation-ms/loan-validation-ms.iml" filepath="$PROJECT_DIR$/loan-validation-ms/loan-validation-ms.iml" />
     </modules>
   </component>
 </project>

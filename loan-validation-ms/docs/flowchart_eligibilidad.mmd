@@ -1,12 +1,10 @@
-## C1 — Diagrama
-``` mermaid
 flowchart TD
-START([Inicio])
-V4[Validar datos (R4)]
-R1{Antigüedad < 3 meses?}
+    START([Inicio])
+    V4[Validar datos (R4)]
+R1{Antigüedad ≥ 3 meses?}
 R2{Plazo 1..36?}
 MP[Calcular monthlyPayment = requestedAmount/termMonths]
-R3{monthlyPayment <= 40% salario?}
+R3{monthlyPayment ≤ 40% salario?}
 APROBAR([Aprobar solicitud])
 RECH([Rechazar solicitud])
 FIN([Fin])
@@ -23,5 +21,3 @@ R3 -->|No| RECH
 R3 -->|Sí| APROBAR
 RECH --> FIN
 APROBAR --> FIN
-```
-

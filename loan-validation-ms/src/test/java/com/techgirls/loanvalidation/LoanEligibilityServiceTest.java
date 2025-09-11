@@ -36,7 +36,7 @@ public class LoanEligibilityServiceTest {
         .build();
 
     StepVerifier.create(service.validate(req))
-        .expectNextMatches(resp -> !((com.techgirls.loanvalidation.model.LoanValidationResponse)resp).isEligible())
+        .expectNextMatches(resp -> !resp.isEligible())
         .verifyComplete();
   }
 }
