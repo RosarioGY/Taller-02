@@ -1,17 +1,15 @@
-package com.nttdata.loanvalidation.model;
+package com.techgirls.loanvalidation.model;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import java.math.BigDecimal;
 import lombok.Builder;
 import lombok.Data;
 
-/** Request model matching the OpenAPI contract. */
+import jakarta.validation.constraints.NotNull;
+import java.math.BigDecimal;
+
+/** Request model aligned with OpenAPI contract. */
 @Data
 @Builder
 public class LoanValidationRequest {
-    @NotBlank
-    private String applicantId; // UUID recommended
 
     @NotNull
     private BigDecimal monthlySalary;
@@ -21,4 +19,7 @@ public class LoanValidationRequest {
 
     @NotNull
     private Integer termMonths;
+
+    /** Optional; format: YYYY-MM-DD */
+    private String lastLoanDate;
 }

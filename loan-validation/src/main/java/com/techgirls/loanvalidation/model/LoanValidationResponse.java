@@ -1,17 +1,14 @@
-package com.nttdata.loanvalidation.model;
+package com.techgirls.loanvalidation.model;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.List;
 import lombok.Builder;
 import lombok.Data;
 
-/** Response model matching the OpenAPI contract. */
+import java.util.List;
+
 @Data
 @Builder
-public class LoanValidationResponse {
-    private boolean eligible;
-    private List<Reason> reasons;
-    private BigDecimal monthlyPayment;
-    private LocalDate evaluatedAt;
+public class LoanValidationResult {
+    private Boolean eligible;
+    private List<String> reasons;
+    private Double monthlyPayment;
 }
