@@ -1,28 +1,30 @@
 package com.techgirls.loanvalidation.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.*;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class LoanValidationRequest {
+  @NotNull @Min(1)
+  private Double monthlySalary;
 
-    @NotNull
-    private BigDecimal monthlySalary;
+  @NotNull @Min(1)
+  private Double requestedAmount;
 
-    @NotNull
-    private BigDecimal requestedAmount;
+  @NotNull @Min(1)
+  private Integer termMonths;
 
-    @NotNull
-    private Integer termMonths;
-
-    /** Opcional; si lo envías, usa formato ISO yyyy-MM-dd */
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate lastLoanDate;
+  /** Regla R1: antigüedad laboral en meses. Debe ser >= 3. */
+  @NotNull @Min(0)
+  private Integer employmentMonths;
 }

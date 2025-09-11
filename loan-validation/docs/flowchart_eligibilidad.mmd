@@ -1,0 +1,27 @@
+## C1 — Diagrama
+``` mermaid
+flowchart TD
+START([Inicio])
+V4[Validar datos (R4)]
+R1{Antigüedad < 3 meses?}
+R2{Plazo 1..36?}
+MP[Calcular monthlyPayment = requestedAmount/termMonths]
+R3{monthlyPayment <= 40% salario?}
+APROBAR([Aprobar solicitud])
+RECH([Rechazar solicitud])
+FIN([Fin])
+
+START --> V4
+V4 -->|Inválidos| RECH
+V4 -->|OK| R1
+R1 -->|No| RECH
+R1 -->|Sí| R2
+R2 -->|No| RECH
+R2 -->|Sí| MP
+MP --> R3
+R3 -->|No| RECH
+R3 -->|Sí| APROBAR
+RECH --> FIN
+APROBAR --> FIN
+```
+

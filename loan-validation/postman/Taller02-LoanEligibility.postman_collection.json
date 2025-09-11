@@ -1,0 +1,94 @@
+{
+  "info": {
+    "name": "Taller02 - Loan Eligibility API (v1.1)",
+    "_postman_id": "a1111111-2222-3333-4444-555555555555",
+    "description": "Colecci\u00f3n para validar el endpoint (un solo MS).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "OK - Elegible",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/loan-eligibility",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "loan-eligibility"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"monthlySalary\": 2500, \"requestedAmount\": 6000, \"termMonths\": 24, \"employmentMonths\": 12}"
+        }
+      }
+    },
+    {
+      "name": "No elegible - Antig\u00fcedad < 3",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/loan-eligibility",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "loan-eligibility"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"monthlySalary\": 2500, \"requestedAmount\": 6000, \"termMonths\": 24, \"employmentMonths\": 1}"
+        }
+      }
+    },
+    {
+      "name": "No elegible - Capacidad > 40%",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/loan-eligibility",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "loan-eligibility"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"monthlySalary\": 1000, \"requestedAmount\": 8000, \"termMonths\": 20, \"employmentMonths\": 12}"
+        }
+      }
+    }
+  ]
+}

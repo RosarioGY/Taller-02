@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2025-09-11T00:00:00.000Z" agent="ChatGPT" version="24.7.7">
+  <!-- ===================== PAGE 1: Sequence ===================== -->
+  <diagram id="c1" name="C1 - Diagrama de Secuencia">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Participants -->
+        <mxCell id="pc" value="Cliente (Postman/App)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eef;strokeColor=#99a;" vertex="1" parent="1">
+          <mxGeometry x="60" y="80" width="150" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="pctrl" value="LoanValidationsController" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eef;strokeColor=#99a;" vertex="1" parent="1">
+          <mxGeometry x="300" y="80" width="170" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="psrv" value="LoanRuleService" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eef;strokeColor=#99a;" vertex="1" parent="1">
+          <mxGeometry x="540" y="80" width="150" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="prules" value="Reglas R1-R4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eef;strokeColor=#99a;" vertex="1" parent="1">
+          <mxGeometry x="760" y="80" width="130" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="pres" value="LoanValidationResult" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eef;strokeColor=#99a;" vertex="1" parent="1">
+          <mxGeometry x="950" y="80" width="160" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- Lifelines (dashed lines) -->
+        <mxCell id="l1" style="edgeStyle=orthogonalEdgeStyle;endArrow=none;dashed=1;html=1;strokeColor=#99a;" parent="1" source="pc" edge="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="135" y="700" as="target"/></mxGeometry>
+        </mxCell>
+        <mxCell id="l2" style="edgeStyle=orthogonalEdgeStyle;endArrow=none;dashed=1;html=1;strokeColor=#99a;" parent="1" source="pctrl" edge="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="385" y="700" as="target"/></mxGeometry>
+        </mxCell>
+        <mxCell id="l3" style="edgeStyle=orthogonalEdgeStyle;endArrow=none;dashed=1;html=1;strokeColor=#99a;" parent="1" source="psrv" edge="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="615" y="700" as="target"/></mxGeometry>
+        </mxCell>
+        <mxCell id="l4" style="edgeStyle=orthogonalEdgeStyle;endArrow=none;dashed=1;html=1;strokeColor=#99a;" parent="1" source="prules" edge="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="825" y="700" as="target"/></mxGeometry>
+        </mxCell>
+        <mxCell id="l5" style="edgeStyle=orthogonalEdgeStyle;endArrow=none;dashed=1;html=1;strokeColor=#99a;" parent="1" source="pres" edge="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="1030" y="700" as="target"/></mxGeometry>
+        </mxCell>
+
+        <!-- Messages -->
+        <mxCell id="m1" value="POST /loan-validations&#10;LoanValidationRequest" style="endArrow=block;html=1;" edge="1" parent="1" source="pc" target="pctrl">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="m2" value="validar(salary, amount, term, lastLoanDate)" style="endArrow=block;html=1;" edge="1" parent="1" source="pctrl" target="psrv">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="m3a" value="Ejecutar R4 (datos válidos)" style="endArrow=block;html=1;" edge="1" parent="1" source="psrv" target="prules"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="m3b" value="Resultado R4" style="endArrow=block;html=1;dashed=1;" edge="1" parent="1" source="prules" target="psrv"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <mxCell id="m4a" value="Ejecutar R1 (antigüedad)" style="endArrow=block;html=1;" edge="1" parent="1" source="psrv" target="prules"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="m4b" value="Resultado R1" style="endArrow=block;html=1;dashed=1;" edge="1" parent="1" source="prules" target="psrv"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <mxCell id="m5a" value="Ejecutar R2 (plazo 1..36)" style="endArrow=block;html=1;" edge="1" parent="1" source="psrv" target="prules"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="m5b" value="Resultado R2" style="endArrow=block;html=1;dashed=1;" edge="1" parent="1" source="prules" target="psrv"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <mxCell id="m6a" value="Ejecutar R3 (capacidad &lt;= 40%)" style="endArrow=block;html=1;" edge="1" parent="1" source="psrv" target="prules"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="m6b" value="Resultado R3" style="endArrow=block;html=1;dashed=1;" edge="1" parent="1" source="prules" target="psrv"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <mxCell id="m7" value="Construir LoanValidationResult&#10;eligible + reasons + monthPayment" style="endArrow=block;html=1;" edge="1" parent="1" source="psrv" target="pres">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="m8" value="Response JSON (LoanValidationResult)" style="endArrow=block;html=1;dashed=1;" edge="1" parent="1" source="pctrl" target="pc">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <!-- ===================== PAGE 2: Components ===================== -->
+  <diagram id="c2" name="C2 - Diagrama de Componentes">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0c2"/>
+        <mxCell id="1c2" parent="0c2"/>
+
+        <!-- Contract-first block -->
+        <mxCell id="bContract" value="Contract-first" style="swimlane;rounded=1;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1c2">
+          <mxGeometry x="60" y="60" width="300" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="bOpenApi" value="OpenAPI YAML&#10;resources/openapi/loan-validation.yaml" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="bContract">
+          <mxGeometry x="20" y="20" width="260" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="bGen" value="openapi-generator (mvn generate-sources)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="bContract">
+          <mxGeometry x="20" y="80" width="260" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- Controller / Service -->
+        <mxCell id="bClient" value="Cliente / Postman" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1c2">
+          <mxGeometry x="420" y="60" width="150" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="bCtrl" value="Controller: LoanValidationsController" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1c2">
+          <mxGeometry x="420" y="140" width="260" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="bSrv" value="Service: LoanRulesService" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1c2">
+          <mxGeometry x="520" y="300" width="260" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Models -->
+        <mxCell id="bModels" value="Models" style="swimlane;rounded=1;html=1;fillColor=#e8eaf6;strokeColor=#3949ab;" vertex="1" parent="1c2">
+          <mxGeometry x="820" y="140" width="260" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="bReq" value="LoanValidationRequest" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="bModels">
+          <mxGeometry x="20" y="20" width="220" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="bRes" value="LoanValidationResponse" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="bModels">
+          <mxGeometry x="20" y="60" width="220" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="bResult" value="LoanValidationResult" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="bModels">
+          <mxGeometry x="20" y="100" width="220" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="bReason" value="Reason &amp; ReasonType" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="bModels">
+          <mxGeometry x="20" y="140" width="220" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Config / Ports / Observability -->
+        <mxCell id="bConfig" value="Config" style="swimlane;rounded=1;html=1;fillColor=#e8f5e9;strokeColor=#2e7d32;" vertex="1" parent="1c2">
+          <mxGeometry x="360" y="360" width="220" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="bClock" value="ClockConfig" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="bConfig">
+          <mxGeometry x="20" y="20" width="180" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="bAppYml" value="application.yml" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="bConfig">
+          <mxGeometry x="20" y="60" width="180" height="30" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="bPort" value="Port: LoanHistoryClient (interface)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1c2">
+          <mxGeometry x="820" y="360" width="260" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="bAdapter" value="Adapter: StubLoanHistoryClient" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1c2">
+          <mxGeometry x="820" y="410" width="260" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="bExternal" value="Loan History Service (externo)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1c2">
+          <mxGeometry x="1100" y="410" width="220" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="bObs" value="Observability" style="swimlane;rounded=1;html=1;fillColor=#fff3e0;strokeColor=#ef6c00;" vertex="1" parent="1c2">
+          <mxGeometry x="520" y="420" width="230" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="bLogs" value="Logs" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="bObs">
+          <mxGeometry x="20" y="20" width="190" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="bMetrics" value="Metrics" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="bObs">
+          <mxGeometry x="20" y="60" width="190" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Edges -->
+        <mxCell id="e1" value="" style="endArrow=block;html=1;" edge="1" parent="1c2" source="bOpenApi" target="bGen"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e2" value="DTOs" style="endArrow=block;html=1;" edge="1" parent="1c2" source="bGen" target="bCtrl"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3" value="HTTP" style="endArrow=block;html=1;" edge="1" parent="1c2" source="bClient" target="bCtrl"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e4" value="calls" style="endArrow=block;html=1;" edge="1" parent="1c2" source="bCtrl" target="bSrv"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e5" value="" style="endArrow=block;html=1;" edge="1" parent="1c2" source="bSrv" target="bReq"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e6" value="" style="endArrow=block;html=1;" edge="1" parent="1c2" source="bSrv" target="bResult"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e7" value="" style="endArrow=block;html=1;" edge="1" parent="1c2" source="bSrv" target="bPort"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e8" value="" style="endArrow=block;html=1;" edge="1" parent="1c2" source="bPort" target="bAdapter"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e9" value="" style="endArrow=block;html=1;" edge="1" parent="1c2" source="bAdapter" target="bExternal"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e10" value="" style="endArrow=block;html=1;" edge="1" parent="1c2" source="bConfig" target="bSrv"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e11" value="" style="endArrow=block;html=1;" edge="1" parent="1c2" source="bSrv" target="bObs"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <!-- ===================== PAGE 3: Flowchart ===================== -->
+  <diagram id="c3" name="C3 - Diagrama de flujo (proceso)">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0c3"/>
+        <mxCell id="1c3" parent="0c3"/>
+
+        <!-- Nodes -->
+        <mxCell id="st" value="Inicio" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#0277bd;" vertex="1" parent="1c3">
+          <mxGeometry x="540" y="60" width="80" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="v4" value="Validar datos (R4)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1c3">
+          <mxGeometry x="510" y="130" width="140" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="r1" value="Antigüedad &lt; 3m?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1c3">
+          <mxGeometry x="520" y="200" width="120" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="r2" value="Plazo 1..36?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1c3">
+          <mxGeometry x="520" y="300" width="120" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="r3" value="Capacidad ≤ 40%?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1c3">
+          <mxGeometry x="520" y="400" width="140" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="mp" value="Calcular monthlyPayment" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1c3">
+          <mxGeometry x="510" y="500" width="160" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="ap" value="Aprobar solicitud" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1c3">
+          <mxGeometry x="520" y="560" width="140" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="rech" value="Rechazar solicitud" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffebee;strokeColor=#c62828;" vertex="1" parent="1c3">
+          <mxGeometry x="350" y="340" width="150" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="fin" value="Fin" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#0277bd;" vertex="1" parent="1c3">
+          <mxGeometry x="560" y="630" width="80" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- Edges -->
+        <mxCell id="e01" value="" style="endArrow=block;html=1;" edge="1" parent="1c3" source="st" target="v4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e02" value="Inválidos" style="endArrow=block;html=1;" edge="1" parent="1c3" source="v4" target="rech"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e03" value="OK" style="endArrow=block;html=1;" edge="1" parent="1c3" source="v4" target="r1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <mxCell id="e04" value="No" style="endArrow=block;html=1;" edge="1" parent="1c3" source="r1" target="rech"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e05" value="Sí" style="endArrow=block;html=1;" edge="1" parent="1c3" source="r1" target="r2"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <mxCell id="e06" value="No" style="endArrow=block;html=1;" edge="1" parent="1c3" source="r2" target="rech"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e07" value="Sí" style="endArrow=block;html=1;" edge="1" parent="1c3" source="r2" target="r3"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <mxCell id="e08" value="No" style="endArrow=block;html=1;" edge="1" parent="1c3" source="r3" target="rech"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e09" value="Sí" style="endArrow=block;html=1;" edge="1" parent="1c3" source="r3" target="mp"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <mxCell id="e10" value="" style="endArrow=block;html=1;" edge="1" parent="1c3" source="mp" target="ap"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e11" value="" style="endArrow=block;html=1;" edge="1" parent="1c3" source="ap" target="fin"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e12" value="" style="endArrow=block;html=1;" edge="1" parent="1c3" source="rech" target="fin"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

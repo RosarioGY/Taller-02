@@ -1,14 +1,18 @@
 package com.techgirls.loanvalidation.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class LoanValidationResult {
-    private Boolean eligible;
-    private List<String> reasons;
-    private Double monthlyPayment;
+public class LoanValidationResponse {
+  private boolean eligible;
+  private double monthlyPayment;
+  private List<String> reasons;
 }
