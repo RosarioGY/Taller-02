@@ -1,6 +1,6 @@
 # Arquitectura — Loan Validation
 
-## C3 — Diagrama de Secuencia
+## C1 — Diagrama de Secuencia
 ```mermaid
 sequenceDiagram
   participant C as Cliente (Postman/App)
@@ -23,55 +23,74 @@ sequenceDiagram
   API-->>C: Response JSON (LoanValidationResult)
 ```
 
-## C4 — Flowchart (Rules & Pipeline)
+## C2 — Diagrama de Componentes
 ```mermaid
 flowchart LR
-  %% === Externo ===
-  C[Cliente - Postman / App] -->|POST /loan-validations| CTRL
+    C["Cliente / Postman"] --> API["Controller: LoanValidationsController"]
+    API --> SVC["Service: LoanRulesService"]
 
-  %% === Microservicio ===
-  subgraph SVC[loan-validation - Spring Boot WebFlux]
-    direction TB
-    CTRL[Controller - LoanValidationsController] --> SRV[Service - LoanRulesService]
+    SVC --> PORT["Port: LoanHistoryClient (interface)"]
+    PORT --> ADP["Adapter: StubLoanHistoryClient"]
+    ADP -.-> EXT["Loan History Service (externo)"]
 
-    subgraph RULES[Business Rules]
-      direction TB
-      R4[R4: Datos válidos] 
-      R1[R1: Antigüedad - <3m]
-      R2[R2: Plazo - 1..36]
-      R3[R3: Capacidad - ≤ 40% sueldo]
+    subgraph Modelos
+        REQ["LoanValidationRequest"]
+        RES["LoanValidationResponse"]
+        RSL["LoanValidationResult"]
+        RSN["Reason & ReasonType"]
     end
+    API <-->|DTO| REQ
+    API <-->|DTO| RES
+    SVC --> RSL
+    RSL --> RSN
 
-    SRV --> R4
-    SRV --> R1
-    SRV --> R2
-    SRV --> R3
-
-    MP[(monthlyPayment = requestedAmount / termMonths)]
-    SRV --> MP
-
-    subgraph CONTRACT[Contract-first]
-      OA[(OpenAPI YAML - src/main/resources/openapi/loan-validation.yaml)]
-      GEN[[openapi-generator - mvn generate-sources]]
+    subgraph Config
+        CLK["ClockConfig"]
+        APP["application.yml"]
     end
-    OA --> GEN --> CTRL
-    GEN --> MDL[Modelos DTO - (LoanValidationRequest/Result)]
+    CLK --> SVC
+    APP --> API
+    APP --> SVC
 
-    subgraph QA[Quality]
-      TST[[JUnit/Mockito - src/test]]
-      JACO[[JaCoCo - coverage]]
-      CS[[Checkstyle - verify]]
+    subgraph Contract["Contract-first"]
+        OAY["OpenAPI YAML (resources/openapi/loan-validation.yaml)"]
+        OAG["openapi-generator (mvn generate-sources)"]
     end
-    TST --> JACO
-    TST --> CTRL
-    TST --> SRV
-    CS -->|verifica estilo| SVC
+    OAY --> OAG --> API
 
-    CFG[(application.yml - server.port=8080)]
-  end
+    subgraph Observability
+        LOG["Logs"]
+        MET["Metrics"]
+    end
+    SVC --> LOG
+    SVC --> MET
 
-  note right of SVC
-    Stateless (sin BD)
-    Clock inyectable para tests
-  end note
+```
+
+## C3 — Diagrama de flujo (proceso)
+```mermaid
+flowchart TD
+    START([Inicio])
+    V4[Validar datos (R4)]
+R1{Antiguedad ≤ 3m?}
+R2{Plazo 1..36?}
+R3{Capacidad ≤ 40%?}
+MP[Calcular monthlyPayment]
+APROBAR([Aprobar solicitud])
+RECH([Rechazar solicitud])
+FIN([Fin])
+
+START --> V4
+V4 -->|Invalidos| RECH
+V4 -->|OK| R1
+R1 -->|No| RECH
+R1 -->|Si| R2
+R2 -->|No| RECH
+R2 -->|Si| R3
+R3 -->|No| RECH
+R3 -->|Si| MP
+MP --> APROBAR
+RECH --> FIN
+APROBAR --> FIN
+
 ```
