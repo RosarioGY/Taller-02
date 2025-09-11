@@ -69,28 +69,29 @@ flowchart LR
 
 ## C3 — Diagrama de flujo (proceso)
 ```mermaid
+%%{init: {'securityLevel': 'strict', 'flowchart': {'htmlLabels': false}}}%%
 flowchart TD
-    START([Inicio])
-    V4[Validar datos (R4)]
-R1{Antiguedad ≤ 3m?}
-R2{Plazo 1..36?}
-R3{Capacidad ≤ 40%?}
-MP[Calcular monthlyPayment]
-APROBAR([Aprobar solicitud])
-RECH([Rechazar solicitud])
-FIN([Fin])
+    START(["Inicio"])
+    V4["Validar datos (R4)"]
+    R1{"Antigüedad &lt; 3m?"}
+    R2{"Plazo 1..36?"}
+    R3{"Capacidad &le; 40%?"}
+    MP["Calcular monthlyPayment"]
+    APROBAR(["Aprobar solicitud"])
+    RECH(["Rechazar solicitud"])
+    FIN(["Fin"])
 
-START --> V4
-V4 -->|Invalidos| RECH
-V4 -->|OK| R1
-R1 -->|No| RECH
-R1 -->|Si| R2
-R2 -->|No| RECH
-R2 -->|Si| R3
-R3 -->|No| RECH
-R3 -->|Si| MP
-MP --> APROBAR
-RECH --> FIN
-APROBAR --> FIN
+    START --> V4
+    V4 -- Inválidos --> RECH
+    V4 -- OK --> R1
+    R1 -- No --> RECH
+    R1 -- Sí --> R2
+    R2 -- No --> RECH
+    R2 -- Sí --> R3
+    R3 -- No --> RECH
+    R3 -- Sí --> MP
+    MP --> APROBAR
+    RECH --> FIN
+    APROBAR --> FIN
 
 ```
