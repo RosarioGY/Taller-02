@@ -1,4 +1,4 @@
-<mxfile host="drawio-plugin" modified="2025-09-12T00:42:53.634Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" etag="TLNnibZHvyigDPAnVtj9" version="22.1.22" type="embed" pages="3">
+<mxfile host="drawio-plugin" modified="2025-09-12T00:48:34.320Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" etag="tW7c85eTtaGqDMxDv_zg" version="22.1.22" type="embed" pages="3">
   <diagram id="c1" name="C1 - Diagrama de Secuencia">
     <mxGraphModel dx="1203" dy="1917" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
@@ -285,7 +285,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="c3" name="C3 - Diagrama de flujo (proceso)">
-    <mxGraphModel dx="656" dy="1045" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="361" dy="575" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0c3" />
         <mxCell id="1c3" parent="0c3" />

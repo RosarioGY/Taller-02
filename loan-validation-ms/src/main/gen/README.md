@@ -2,7 +2,7 @@
 
 Loan Eligibility API
 - API version: 1.1.0
-  - Build date: 2025-09-11T18:39:25.615854500-05:00[America/Lima]
+  - Build date: 2025-09-11T19:50:28.966935800-05:00[America/Lima]
   - Generator version: 7.7.0
 
 Single microservice. Validates loan eligibility using rules R1–R4.

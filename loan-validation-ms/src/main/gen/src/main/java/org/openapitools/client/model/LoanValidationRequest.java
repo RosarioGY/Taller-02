@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * LoanValidationRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-09-11T18:39:25.615854500-05:00[America/Lima]", comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-09-11T19:50:28.966935800-05:00[America/Lima]", comments = "Generator version: 7.7.0")
 public class LoanValidationRequest {
   public static final String SERIALIZED_NAME_MONTHLY_SALARY = "monthlySalary";
   @SerializedName(SERIALIZED_NAME_MONTHLY_SALARY)
