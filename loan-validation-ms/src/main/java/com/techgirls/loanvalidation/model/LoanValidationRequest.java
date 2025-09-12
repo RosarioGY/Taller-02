@@ -7,24 +7,22 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class LoanValidationRequest {
-  @NotNull @Min(1)
-  private Double monthlySalary;
 
-  @NotNull @Min(1)
-  private Double requestedAmount;
+    @NotNull @Min(1)
+    private Double monthlySalary;
 
-  @NotNull @Min(1)
-  private Integer termMonths;
+    @NotNull @Min(1)
+    private Double requestedAmount;
 
-  /** Regla R1: antigüedad laboral en meses. Debe ser >= 3. */
-  @NotNull @Min(0)
-  private Integer employmentMonths;
+    @NotNull @Min(1)
+    private Integer termMonths;
+
+    /** Regla R1: antigüedad laboral en meses (>= 3). */
+    @NotNull @Min(0)
+    private Integer employmentMonths;
 }
