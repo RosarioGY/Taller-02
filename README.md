@@ -7,7 +7,6 @@ Microservicio **único** que evalúa la elegibilidad de un préstamo aplicando r
 ## ✔️ Entregables
 - **Repositorio de código**: `/loan-validation-ms`
 - **Colección de Postman**: `/loan-validation-ms/postman/Taller02-LoanEligibility.postman_collection.json`
-- **Word (diagramas + evidencias de uso)**: ver documentos compartidos y `/loan-validation-ms/docs/`
 - **Diagramas**:  
   - Flujo (`.drawio` y `.png`): `/loan-validation-ms/docs/flowchart_eligibilidad.drawio`, `/loan-validation-ms/docs/arquitectura_taller02.png`  
   - Arquitectura (`.drawio`): `/loan-validation-ms/docs/architecture (2).drawio`
