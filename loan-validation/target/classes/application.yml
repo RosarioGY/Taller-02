@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Main configuration - delegates to profile-specific configs
 server:
   port: 8080
@@ -29,4 +30,12 @@ loan-validation:
     max-term-months: 36
     max-salary-percentage: 0.40
     recent-loan-months: 3
+=======
+# Configuración básica de Spring Boot
+server:
+  port: 8080
+spring:
+  application:
+    name: loan-validation
+>>>>>>> 21f64187c9dd86974ecfab3da197f679d66029bf
 

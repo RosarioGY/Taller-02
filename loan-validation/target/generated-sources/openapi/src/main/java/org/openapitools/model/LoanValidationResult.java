@@ -1,4 +1,4 @@
-package com.techgirls.loanvalidation.model;
+package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
@@ -10,23 +10,19 @@ import java.util.Arrays;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * LoanValidationResult
  */
 
-<<<<<<< HEAD
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-09-11T22:16:52.186776-05:00[America/Lima]", comments = "Generator version: 7.7.0")
-=======
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-09-10T18:11:32.748721400-05:00[America/Lima]", comments = "Generator version: 7.7.0")
->>>>>>> 21f64187c9dd86974ecfab3da197f679d66029bf
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-09-11T02:17:50.625965500-05:00[America/Lima]", comments = "Generator version: 7.7.0")
 public class LoanValidationResult {
 
   private Boolean eligible;
@@ -143,16 +139,9 @@ public class LoanValidationResult {
 
   /**
    * Get monthlyPayment
-<<<<<<< HEAD
-   * minimum: 0
-   * @return monthlyPayment
-   */
-  @NotNull @DecimalMin("0") 
-=======
    * @return monthlyPayment
    */
   @NotNull 
->>>>>>> 21f64187c9dd86974ecfab3da197f679d66029bf
   @Schema(name = "monthlyPayment", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("monthlyPayment")
   public Double getMonthlyPayment() {

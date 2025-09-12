@@ -1,4 +1,4 @@
-package com.techgirls.loanvalidation.model;
+package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
@@ -11,23 +11,19 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.NoSuchElementException;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * LoanValidationRequest
  */
 
-<<<<<<< HEAD
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-09-11T22:16:52.186776-05:00[America/Lima]", comments = "Generator version: 7.7.0")
-=======
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-09-10T18:11:32.748721400-05:00[America/Lima]", comments = "Generator version: 7.7.0")
->>>>>>> 21f64187c9dd86974ecfab3da197f679d66029bf
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-09-11T02:17:50.625965500-05:00[America/Lima]", comments = "Generator version: 7.7.0")
 public class LoanValidationRequest {
 
   private Double monthlySalary;
@@ -122,19 +118,11 @@ public class LoanValidationRequest {
   }
 
   /**
-<<<<<<< HEAD
-   * Fecha del último préstamo del solicitante. Si está presente y es ≤ hoy-3m, se considera reciente.
-   * @return lastLoanDate
-   */
-  @Valid 
-  @Schema(name = "lastLoanDate", description = "Fecha del último préstamo del solicitante. Si está presente y es ≤ hoy-3m, se considera reciente.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-=======
    * Fecha del último préstamo del solicitante.
    * @return lastLoanDate
    */
   @Valid 
   @Schema(name = "lastLoanDate", description = "Fecha del último préstamo del solicitante.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
->>>>>>> 21f64187c9dd86974ecfab3da197f679d66029bf
   @JsonProperty("lastLoanDate")
   public JsonNullable<LocalDate> getLastLoanDate() {
     return lastLoanDate;

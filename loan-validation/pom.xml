@@ -9,7 +9,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.5</version>
+        <version>3.3.4</version>
         <relativePath/>
     </parent>
 
@@ -37,6 +37,12 @@
     </properties>
 
     <dependencies>
+        <!-- Base -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
         <!-- WebFlux -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -53,17 +59,17 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <optional>true</optional>
+            <version>1.18.32</version>
+            <scope>provided</scope>
         </dependency>
 
-        <!-- Testing (JUnit, Mockito, AssertJ) -->
+        <!-- Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
 
-        <!-- Reactor Test (para StepVerifier en WebFlux) -->
         <dependency>
             <groupId>io.projectreactor</groupId>
             <artifactId>reactor-test</artifactId>
@@ -132,7 +138,8 @@
 
     <build>
         <plugins>
-            <!-- OpenAPI Generator: genera API/interfaces/modelos desde el contrato -->
+
+            <!-- OpenAPI Generator -->
             <plugin>
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
@@ -143,25 +150,37 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
+<<<<<<< HEAD
                             <!-- Ruta del contrato -->
                             <inputSpec>${project.basedir}/src/main/resources/openapi/loan-eligibility.yaml</inputSpec>
+=======
+                            <inputSpec>${project.basedir}/src/main/resources/openapi/loan-validation.yaml</inputSpec>
+>>>>>>> 21f64187c9dd86974ecfab3da197f679d66029bf
                             <generatorName>spring</generatorName>
+
+                            <!-- salida -->
+                            <output>${project.build.directory}/generated-sources/openapi</output>
+
                             <apiPackage>com.techgirls.loanvalidation.api</apiPackage>
                             <modelPackage>com.techgirls.loanvalidation.model</modelPackage>
                             <invokerPackage>com.techgirls.loanvalidation</invokerPackage>
+
                             <generateSupportingFiles>false</generateSupportingFiles>
+
                             <configOptions>
                                 <interfaceOnly>true</interfaceOnly>
                                 <useTags>true</useTags>
-                                <dateLibrary>java8</dateLibrary>
                                 <reactive>true</reactive>
+                                <dateLibrary>java8</dateLibrary>
+                                <useLombok>true</useLombok>
+                                <useSpringBoot3>true</useSpringBoot3>
                             </configOptions>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
 
-            <!-- (Opcional pero útil) Añadir la carpeta de código generado al classpath -->
+            <!-- Incluir código generado -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
@@ -170,17 +189,23 @@
                     <execution>
                         <id>add-generated-sources</id>
                         <phase>generate-sources</phase>
-                        <goals><goal>add-source</goal></goals>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
                         <configuration>
                             <sources>
-                                <source>${project.build.directory}/generated-sources</source>
+                                <source>${project.build.directory}/generated-sources/openapi</source>
                             </sources>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
 
+<<<<<<< HEAD
             <!-- JaCoCo: cobertura de código -->
+=======
+            <!-- JaCoCo -->
+>>>>>>> 21f64187c9dd86974ecfab3da197f679d66029bf
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -243,12 +268,17 @@
                 </executions>
             </plugin>
 
+<<<<<<< HEAD
             <!-- Checkstyle: análisis estático de código -->
+=======
+            <!-- Checkstyle (ruta corregida) -->
+>>>>>>> 21f64187c9dd86974ecfab3da197f679d66029bf
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>${maven.checkstyle.version}</version>
                 <configuration>
+<<<<<<< HEAD
                     <configLocation>config/checkstyle.xml</configLocation>
                     <includeTestSourceDirectory>true</includeTestSourceDirectory>
                     <consoleOutput>${checkstyle.console.output}</consoleOutput>
@@ -258,6 +288,11 @@
                     <sourceDirectories>
                         <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
                     </sourceDirectories>
+=======
+                    <configLocation>config/checkstyle/checkstyle.xml</configLocation>
+                    <consoleOutput>true</consoleOutput>
+                    <failOnViolation>false</failOnViolation>
+>>>>>>> 21f64187c9dd86974ecfab3da197f679d66029bf
                 </configuration>
                 <executions>
                     <execution>
@@ -277,11 +312,12 @@
                 </dependencies>
             </plugin>
 
-            <!-- Spring Boot plugin (empaquetado/ejecución) -->
+            <!-- Spring Boot -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
         </plugins>
     </build>
 

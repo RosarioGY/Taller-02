@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+    <component name="CheckStyle-IDEA" serialisationVersion="2">
+        <checkstyleVersion>11.0.1</checkstyleVersion>
+        <scanScope>JavaOnly</scanScope>
+        <copyLibs>true</copyLibs>
+        <option name="thirdPartyClasspath" />
+        <option name="activeLocationIds">
+            <list>
+                <option value="Local Checkstyle" />
+            </list>
+        </option>
+        <option name="locations">
+            <list>
+                <ConfigurationLocation id="Local Checkstyle" type="PROJECT_RELATIVE" scope="All"
+                                       description="Custom project rules">
+                    $PROJECT_DIR$/loan-validation/config/checkstyle.xml
+                </ConfigurationLocation>
+            </list>
+        </option>
+    </component>
+</project>
