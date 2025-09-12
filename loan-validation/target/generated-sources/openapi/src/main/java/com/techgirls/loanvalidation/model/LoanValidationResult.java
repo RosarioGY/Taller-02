@@ -22,7 +22,7 @@ import javax.annotation.Generated;
  * LoanValidationResult
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-09-11T15:27:52.234118500-05:00[America/Lima]", comments = "Generator version: 7.7.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-09-11T22:16:52.186776-05:00[America/Lima]", comments = "Generator version: 7.7.0")
 public class LoanValidationResult {
 
   private Boolean eligible;
@@ -139,9 +139,10 @@ public class LoanValidationResult {
 
   /**
    * Get monthlyPayment
+   * minimum: 0
    * @return monthlyPayment
    */
-  @NotNull 
+  @NotNull @DecimalMin("0") 
   @Schema(name = "monthlyPayment", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("monthlyPayment")
   public Double getMonthlyPayment() {

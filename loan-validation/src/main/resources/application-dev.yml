@@ -1,0 +1,40 @@
+# Development Environment Configuration
+server:
+  port: 8080
+  
+spring:
+  application:
+    name: loan-validation
+  profiles:
+    active: dev
+  webflux:
+    base-path: /api/v1
+
+# Logging configuration for development
+logging:
+  level:
+    com.techgirls.loanvalidation: DEBUG
+    org.springframework.web: DEBUG
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
+# Management endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,env
+  endpoint:
+    health:
+      show-details: always
+
+# Custom application properties
+loan-validation:
+  business-rules:
+    max-term-months: 36
+    max-salary-percentage: 0.40
+    recent-loan-months: 3
+  client:
+    loan-history:
+      timeout: 5s
+      retry-attempts: 3

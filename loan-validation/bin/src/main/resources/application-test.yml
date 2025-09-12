@@ -1,0 +1,37 @@
+# Test Environment Configuration
+server:
+  port: 0  # Random port for tests
+
+spring:
+  application:
+    name: loan-validation-test
+  profiles:
+    active: test
+
+# Logging configuration for tests (minimal)
+logging:
+  level:
+    com.techgirls.loanvalidation: INFO
+    org.springframework: WARN
+    reactor.netty: WARN
+  pattern:
+    console: "%d{HH:mm:ss} %-5level %logger{36} - %msg%n"
+
+# Management endpoints disabled for tests
+management:
+  endpoints:
+    enabled-by-default: false
+  endpoint:
+    health:
+      enabled: true
+
+# Test-specific business rules (can be different for edge case testing)
+loan-validation:
+  business-rules:
+    max-term-months: 36
+    max-salary-percentage: 0.40
+    recent-loan-months: 3
+  client:
+    loan-history:
+      timeout: 1s
+      retry-attempts: 1

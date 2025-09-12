@@ -1,0 +1,57 @@
+# Production Environment Configuration
+server:
+  port: 8080
+  shutdown: graceful
+  
+spring:
+  application:
+    name: loan-validation
+  profiles:
+    active: prod
+    
+# Production logging
+logging:
+  level:
+    com.techgirls.loanvalidation: INFO
+    org.springframework: WARN
+    reactor.netty: WARN
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: /var/log/loan-validation/application.log
+    max-size: 100MB
+    max-history: 30
+
+# Production management endpoints (secured)
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: when-authorized
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
+# Production business rules
+loan-validation:
+  business-rules:
+    max-term-months: 36
+    max-salary-percentage: 0.40
+    recent-loan-months: 3
+  client:
+    loan-history:
+      timeout: 10s
+      retry-attempts: 3
+      circuit-breaker:
+        enabled: true
+        failure-threshold: 5
+        recovery-timeout: 30s
+
+# Security (placeholder for future implementation)
+security:
+  enabled: false  # Will be enabled when security is implemented

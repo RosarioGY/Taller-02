@@ -1,7 +1,32 @@
-# Configuración básica de Spring Boot
+# Main configuration - delegates to profile-specific configs
 server:
   port: 8080
+  
 spring:
   application:
     name: loan-validation
+  profiles:
+    default: dev
+    
+# Default logging
+logging:
+  level:
+    com.techgirls.loanvalidation: INFO
+    
+# Default management endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      enabled: true
+
+# Default business rules (can be overridden by profiles)
+loan-validation:
+  business-rules:
+    max-term-months: 36
+    max-salary-percentage: 0.40
+    recent-loan-months: 3
 

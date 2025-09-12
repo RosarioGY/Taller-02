@@ -23,7 +23,7 @@ import javax.annotation.Generated;
  * LoanValidationRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-09-11T15:27:52.234118500-05:00[America/Lima]", comments = "Generator version: 7.7.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-09-11T22:16:52.186776-05:00[America/Lima]", comments = "Generator version: 7.7.0")
 public class LoanValidationRequest {
 
   private Double monthlySalary;
@@ -118,11 +118,11 @@ public class LoanValidationRequest {
   }
 
   /**
-   * Fecha del último préstamo del solicitante.
+   * Fecha del último préstamo del solicitante. Si está presente y es ≤ hoy-3m, se considera reciente.
    * @return lastLoanDate
    */
   @Valid 
-  @Schema(name = "lastLoanDate", description = "Fecha del último préstamo del solicitante.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @Schema(name = "lastLoanDate", description = "Fecha del último préstamo del solicitante. Si está presente y es ≤ hoy-3m, se considera reciente.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("lastLoanDate")
   public JsonNullable<LocalDate> getLastLoanDate() {
     return lastLoanDate;

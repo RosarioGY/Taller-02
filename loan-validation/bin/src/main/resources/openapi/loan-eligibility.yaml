@@ -1,0 +1,70 @@
+openapi: 3.0.3
+info:
+  title: Loan Validation Service
+  version: 1.1.0
+servers:
+  - url: http://localhost:8080
+paths:
+  /loan-validations:
+    post:
+      summary: Valida una solicitud de préstamo
+      operationId: validateLoan
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoanValidationRequest'
+            examples:
+              ok:
+                value:
+                  monthlySalary: 2500
+                  requestedAmount: 6000
+                  termMonths: 24
+                  lastLoanDate: "2025-04-01"
+      responses:
+        '200':
+          description: Resultado de la validación
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoanValidationResult'
+              examples:
+                eligible:
+                  value:
+                    eligible: true
+                    reasons: []
+                    monthlyPayment: 250.0
+                notEligible:
+                  value:
+                    eligible: false
+                    reasons: ["HAS_RECENT_LOANS", "CAPACIDAD_INSUFICIENTE"]
+                    monthlyPayment: 300.0
+        '400':
+          description: Petición inválida
+components:
+  schemas:
+    LoanValidationRequest:
+      type: object
+      required: [monthlySalary, requestedAmount, termMonths]
+      properties:
+        monthlySalary: { type: number, format: double, minimum: 0.01 }
+        requestedAmount: { type: number, format: double, minimum: 0.01 }
+        termMonths: { type: integer, minimum: 1, maximum: 36 }
+        lastLoanDate:
+          type: string
+          format: date
+          nullable: true
+          description: Fecha del último préstamo del solicitante. Si está presente y es ≤ hoy-3m, se considera reciente.
+    LoanValidationResult:
+      type: object
+      required: [eligible, reasons, monthlyPayment]
+      properties:
+        eligible: { type: boolean }
+        reasons:
+          type: array
+          items:
+            type: string
+            enum: [HAS_RECENT_LOANS, PLAZO_MAXIMO_SUPERADO, CAPACIDAD_INSUFICIENTE, DATOS_INVALIDOS]
+        monthlyPayment: { type: number, format: double, minimum: 0 }
+

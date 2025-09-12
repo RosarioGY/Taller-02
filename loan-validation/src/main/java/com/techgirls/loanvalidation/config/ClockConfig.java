@@ -1,4 +1,4 @@
-package com.nttdata.loanvalidation.config;
+package com.techgirls.loanvalidation.config;
 
 import java.time.Clock;
 import org.springframework.context.annotation.Bean;
